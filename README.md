@@ -28,9 +28,43 @@ benson --reload
 # or: uvicorn benson.app:create_app --factory --host 0.0.0.0 --port 8000 --reload --reload-dir src --reload-dir assets
 ```
 
-Endpoints: `/validator` and `/regvalidate` (async harvest validation form), `POST /validator/jobs`, `GET /oai` (IVOA standards OAI-PMH catalog from `assets/standards`), `GET /list-publishers` (publishers OAI XML catalog), `GET /api/v1/registry/publishers` (JSON), `/api/v1/registry-validate/harvest`, `POST /api/v1/registry-validate/voresource`.
+### Endpoints
 
-Environment: `SCHEMA_ROOT` (default `./assets/schemas`), `ASSETS_ROOT` (XSLT under `./assets/validate`), `STANDARDS_DIR` (default `./assets/standards`, indexed at `/oai`), `OAI_REPOSITORY_NAME`, `OAI_ADMIN_EMAIL`, `OAI_REGISTRY_IDENTIFIER`, `OAI_MANAGED_AUTHORITY`, `OAI_MAX_RECORDS`, `TEMPLATES_DIR`, `STATIC_DIR`, `PUBLISHERS_DATA_DIR`, `PUBLISHERS_REGISTRY_FILE` (default `./data/publishers/publishers.json`), `REGISTRATION_MAX_FAILURES` (default `0`), `REGISTRATION_MAX_WARNINGS`, `REGISTRATION_REQUIRE_BUILTIN_SCHEMAS` (default on), `BENSON_PROXY_HEADERS` (default on; fixes template `url_for` behind a reverse proxy), `FORWARDED_ALLOW_IPS` (default `*`; tighten in production), `COMPLY_PATH`, `LOG_LEVEL` (default `INFO`), `BENSON_PARITY_JSON=1`, `BENSON_EXPOSE_ERRORS=1` (debug only).
+| Method | Path | Description |
+|--------|------|-------------|
+| GET, POST | `/validator`, `/regvalidate` | Async harvest validation form |
+| POST | `/validator/jobs` | Start validation job |
+| GET | `/oai` | IVOA standards OAI-PMH catalog from `assets/standards` |
+| GET | `/list-publishers` | Publishers OAI XML catalog |
+| GET | `/api/v1/registry/publishers` | Publishers registry (JSON) |
+| GET, POST | `/api/v1/registry-validate/harvest` | Harvest validation API |
+| POST | `/api/v1/registry-validate/voresource` | VOResource validation API |
+
+### Environment
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `SCHEMA_ROOT` | `./assets/schemas` | Bundled XSD schemas |
+| `ASSETS_ROOT` | `./assets/validate` | XSLT validation stylesheets |
+| `STANDARDS_DIR` | `./assets/standards` | IVOA standards records (indexed at `/oai`) |
+| `OAI_REPOSITORY_NAME` | `IVOA Registry of Registries` | OAI Identify repository name |
+| `OAI_ADMIN_EMAIL` | `registry@ivoa.net` | OAI admin contact |
+| `OAI_REGISTRY_IDENTIFIER` | `ivo://ivoa.net/rofr` | OAI registry identifier |
+| `OAI_MANAGED_AUTHORITY` | `ivoa.net` | OAI managed authority |
+| `OAI_MAX_RECORDS` | `100` | Max records per OAI list response |
+| `TEMPLATES_DIR` | `./assets/templates` | Jinja templates |
+| `STATIC_DIR` | `./assets/static` | Static assets |
+| `PUBLISHERS_DATA_DIR` | `./data/publishers` | Publishers registry data directory |
+| `PUBLISHERS_REGISTRY_FILE` | `./data/publishers/publishers.json` | Publishers registry JSON file |
+| `REGISTRATION_MAX_FAILURES` | `0` | Max failures allowed for registration |
+| `REGISTRATION_MAX_WARNINGS` | `999999` | Max warnings allowed for registration |
+| `REGISTRATION_REQUIRE_BUILTIN_SCHEMAS` | on | Require built-in XSD schemas for registration |
+| `BENSON_PROXY_HEADERS` | on | Enable proxy headers (fixes template `url_for` behind a reverse proxy) |
+| `FORWARDED_ALLOW_IPS` | `*` | Trusted proxy IPs (tighten in production) |
+| `COMPLY_PATH` | — | Optional comply path |
+| `LOG_LEVEL` | `INFO` | Logging level |
+| `BENSON_PARITY_JSON` | off | Enable JSON parity mode (`=1` to enable) |
+| `BENSON_EXPOSE_ERRORS` | off | Expose error details in responses (debug only; `=1` to enable) |
 
 ### Built-in XSD catalog (`builtinSchemas`)
 
