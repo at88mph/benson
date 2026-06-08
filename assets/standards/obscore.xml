@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ri:Resource
+	xsi:type="vstd:Standard"
+	created="2016-07-09T08:00:00Z"
+	updated="2023-05-23T14:03:00"
+	status="active"
+	xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+	xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
+	xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0
+						http://www.ivoa.net/xml/StandardsRegExt/v1.0 http://www.ivoa.net/xml/StandardsRegExt/v1.0
+						http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/v1.0">
+
+	<title>Observation Data Model Core Components and its Implementation in the Table Access
+		Protocol</title>
+	<identifier>ivo://ivoa.net/std/obscore</identifier>
+	<curation>
+		<publisher>IVOA</publisher>
+
+		<creator>
+			<name>Louys, M.</name>
+		</creator>
+		<creator>
+			<name>Tody, D.</name>
+		</creator>
+		<creator>
+			<name>Dowler, P.</name>
+		</creator>
+		<creator>
+			<name>Durand, D.</name>
+		</creator>
+		<creator>
+			<name>Michel, L.</name>
+		</creator>
+		<creator>
+			<name>Bonnarel, F.</name>
+		</creator>
+		<creator>
+			<name>Micol, A.</name>
+		</creator>
+
+		<!-- this should be the date of the last recommendation -->
+		<date role="update">2017-05-09</date>
+		<version>1.1</version> <!-- the document version -->
+		<contact>
+			<name>IVOA Data Model Working Group</name>
+			<email>dm@ivoa.net</email>
+		</contact>
+	</curation>
+	<content>
+		<subject>Virtual observatory</subject>
+		<subject>Metadata modeling</subject>
+		<!-- you can give further keywords, one per subject element;
+    use the IVOA thesaurus if possible:
+    http://www.ivoa.net/rdf/Vocabularies/vocabularies-20091007/IVOAT/IVOAT.html
+    -->
+
+		<description>
+			This document defines the core components of the Observation data model
+			that are necessary to perform data discovery when querying data centers
+			for astronomical observations of interest. It exposes use-cases to be carried out,
+			explains the model and provides guidelines for its implementation as a data access
+			service based on the Table Access Protocol (TAP).
+			It aims at providing a simple model easy to understand and to implement by data
+			providers that wish to publish their data into the Virtual Observatory. This
+			interface integrates data modeling and data access aspects in a single service and
+			is named ObsTAP. It will be referenced as such in the IVOA registries.
+			In this document, the Observation Data Model Core Components (ObsCoreDM) defines
+			the core components of queryable metadata required for global discovery of
+			observational data. It is meant to allow a single query to be posed to TAP
+			services at multiple sites to perform global data discovery without having to
+			understand the details of the services present at each site. It defines a minimal
+			set of basic metadata and thus allows for a reasonable cost of implementation by
+			data providers. As with most of the VO Data Models, ObsCoreDM makes use of STC,
+			Utypes, Units and UCDs. The ObsCoreDM can be serialized as a VOTable. ObsCoreDM
+			can make reference to more complete data models such as Characterisation DM,
+			Spectrum DM or Simple Spectral Line Data Model (SSLDM). ObsCore shares a large set
+			of common concepts with DataSet Metadata Data Model (Cresitello-Dittmar et al. 2016)
+			which binds together most of the data model concepts from the above models in a
+			comprehensive and more general frame work. This current specification on the
+			contrary provides guidelines for implementing these concepts using the TAP protocol
+			and answering ADQL queries. It is dedicated to global discovery.
+		</description>
+		<referenceURL>http://ivoa.net/documents/ObsCore/</referenceURL>
+		<type>Other</type>
+		<contentLevel>Research</contentLevel>
+	</content>
+
+	<endorsedVersion status="rec">1.1</endorsedVersion>
+
+	<key>
+		<name>core-1.1</name>
+		<description>The TAP/ADQL table schema for ObsCore version 1.1 .
+			Examples for TAPv1.0
+		</description>
+	</key>
+
+</ri:Resource>

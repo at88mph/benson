@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Bundle imports for OAI envelope validation with common oai_dc description stubs. -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+  <xs:import namespace="http://purl.org/dc/elements/1.1/" schemaLocation="simpledc20021212.xsd"/>
+  <xs:import namespace="http://www.openarchives.org/OAI/2.0/oai_dc/" schemaLocation="oai_dc.xsd"/>
+  <xs:import namespace="http://www.openarchives.org/OAI/2.0/" schemaLocation="OAI-v2.xsd"/>
+</xs:schema>

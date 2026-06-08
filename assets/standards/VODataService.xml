@@ -1,0 +1,85 @@
+<ri:Resource
+	created="2016-10-21T08:20:00Z"
+	updated="2023-05-23T14:03:00Z"
+	status="active" version="1.2"
+	xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
+	xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:type="vstd:Standard">
+
+  <title>VODataService: a VOResource Schema Extension for Describing Collections and Services</title>
+  <identifier>ivo://ivoa.net/std/VODataService</identifier>
+  <curation>
+    <publisher>IVOA</publisher>
+
+    <creator>
+      <name>Plante, R.</name>
+    </creator>
+    <creator>
+      <name>Stébé, A.</name>
+    </creator>
+    <creator>
+      <name>Benson, K.</name>
+    </creator>
+    <creator>
+      <name>Dowler, P.</name>
+    </creator>
+    <creator>
+      <name>Graham, M.</name>
+    </creator>
+    <creator>
+      <name>Greene, G.</name>
+    </creator>
+    <creator>
+      <name>Harrison, P.</name>
+    </creator>
+    <creator>
+      <name>Lemson, G.</name>
+    </creator>
+    <creator>
+      <name>Linde, T.</name>
+    </creator>
+    <creator>
+      <name>Rixon, G.</name>
+    </creator>
+
+    <date role="update">2021-11-02</date>
+    <version>1.2</version>
+    <contact>
+      <name>IVOA Registry WG</name>
+      <email>registry@ivoa.net</email>
+    </contact>
+  </curation>
+  <content>
+    <subject>virtual-observatories</subject>
+
+    <description>
+			VODataService refers to an XML encoding standard for a specialized
+			extension of the IVOA Resource Metadata that is useful for describing
+			data collections and the services that access them. It is defined as an
+			extension of the core resource metadata encoding standard known as
+			VOResource (Plante and Demleitner et al., 2018) using XML Schema. The
+			specialized resource types defined by the VODataService schema allow one
+			to describe how the data underlying the resource cover the sky and the
+			frequency and time axes. VODataService also enables detailed descriptions
+			of tables that includes information useful to the discovery of tabular
+			data. It is intended that the VODataService data types will be
+			particularly useful in describing services that support standard IVOA
+			service protocols.
+    </description>
+    <referenceURL>http://ivoa.net/documents/VODataService/</referenceURL>
+    <type>Other</type>
+    <contentLevel>Research</contentLevel>
+  </content>
+
+  <endorsedVersion status="rec">1.2</endorsedVersion>
+
+  <schema namespace="http://www.ivoa.net/xml/VODataService/v1.1">
+    <location>http://ivoa.net/xml/VODataService/v1.1</location>
+    <description>
+      A schema defining resource types for data and catalog services,
+      including table metadata.
+    </description>
+  </schema>
+
+</ri:Resource>

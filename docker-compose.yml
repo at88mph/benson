@@ -1,0 +1,18 @@
+services:
+  benson:
+    image: registry.gitlab.com/djenkins.cadc/benson:latest
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - benson-data:/data
+    environment:
+      SEARCHABLES_CACHE_DIR: /data/searchables
+      SEARCHABLES_CACHE_MAX_AGE_SEC: "86400"
+      PUBLISHERS_REGISTRY_FILE: /data/publishers/publishers.json
+      REGISTRATION_MAX_FAILURES: "0"
+      REGISTRATION_MAX_WARNINGS: "999999"
+
+volumes:
+  benson-data:
+    external: true

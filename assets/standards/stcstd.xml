@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ri:Resource xsi:type="vstd:Standard" status="active"
+  created="2013-03-25T19:21:51.07" updated="2023-05-23T14:03:00"
+  xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
+  xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+  xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0
+                      http://www.ivoa.net/xml/StandardsRegExt/v1.0 http://www.ivoa.net/xml/StandardsRegExt/v1.0
+                      http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/v1.0">
+
+  <title>
+    Space-Time Coordinate Metadata for the Virtual Observatory
+  </title>
+  <shortName> STC </shortName>
+  <identifier> ivo://ivoa.net/std/STC </identifier>
+
+  <curation>
+    <publisher ivo-id="ivo://ivoa.net/IVOA">
+      International Virtual Observatory Alliance
+    </publisher>
+    <creator>
+      <name> Arnold Rots </name>
+    </creator>
+    <date> 2011-11-20 </date>
+    <version> 1.33 </version>
+    <contact>
+      <name> Data Models Working Group </name>
+      <email> dm@ivoa.net </email>
+    </contact>
+  </curation>
+
+  <content>
+    <subject> software standard </subject>
+    <subject> virtual observatory </subject>
+    <subject> data model </subject>
+    <subject> coordinate system </subject>
+    <description>
+        This document provides a complete design description of the
+        Space-Time Coordinate (STC) metadata for the Virtual
+        Observatory. It explains the various components, highlights
+        some implementation considerations, presents a complete set of
+        UML diagrams, and discusses the relation between STC and
+        certain other parts of the Data Model. Two serializations are
+        discussed: XML Schema (STC-X) and String (STC-S); the former
+        is an integral part of this Recommendation. 
+      </description>
+    <referenceURL>
+      http://www.ivoa.net/Documents/latest/STC.html
+    </referenceURL>
+    <type> Other </type>
+    <contentLevel> Research </contentLevel>
+  </content>
+
+  <endorsedVersion status="rec"> 1.33 </endorsedVersion>
+
+  <schema namespace="http://www.ivoa.net/xml/STC/stc-v1.30.xsd">
+    <location>http://www.ivoa.net/xml/STC/stc-v1.30.xsd</location>
+    <description>
+      the STC-X XML schema for serializing descriptions of space-time
+      coordinates and coordinate systems.
+    </description>
+    <example>http://206-12-97-214.cloud.computecanada.ca/examples/</example>
+  </schema>
+
+</ri:Resource>

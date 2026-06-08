@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><HarvestValidation baseURL="https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/reg/oai?" showStatus="fail warn rec">
+<testQuery name="Identify" options="verb=Identify" role="Identify">    <test xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" item="RI3.1.1" status="fail">Service must respond to a legal OAI Identify query.</test>
+</testQuery><testQuery name="ListMetadataFormats" options="verb=ListMetadataFormats" role="ListMetadataFormats">    <test xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" item="RI3.1.1" status="fail">Service must respond to a legal OAI ListMetadataFormats query.</test>
+</testQuery><testQuery name="ListSets" options="verb=ListSets" role="ListSets">    <test xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" item="RI3.1.1" status="fail">Service must respond to a legal OAI ListSets query.</test>
+</testQuery><testQuery name="ListRecords" options="verb=ListRecords&amp;metadataPrefix=ivo_vor&amp;set=ivo_managed" role="ListRecords">    <test xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" item="RI3.1.1" status="fail">Service must respond to a legal OAI ListRecords query (and support the 'ivo_vor' metadata prefix and the 'ivo_managed' set).</test>
+</testQuery></HarvestValidation>

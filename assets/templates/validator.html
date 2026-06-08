@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}Registry validator{% endblock %}
+{% block styles %}
+  <link rel="stylesheet" href="{{ url_for('static', path='css/validator.css') }}"/>
+{% endblock %}
+{% block body %}
+  <div class="wrap">
+    <nav class="page-nav" aria-label="Site">
+      <a href="/">← Registry of Registries</a>
+    </nav>
+    <header class="hero">
+      <h1>Registry validator</h1>
+      <p class="lede">
+        Validate an IVOA publishing registry OAI-PMH endpoint against the harvest profile
+        (OAI-PMH checks, IVOA four-GET profile, and sample VOResource records).
+      </p>
+    </header>
+
+    <section class="content">
+      {% if error %}
+      <p class="warn" role="alert">{{ error }}</p>
+      {% endif %}
+      <form id="validator-form" method="post" action="/validator"{% if watch_run_id %} data-run-id="{{ watch_run_id }}"{% endif %}>
+        <div class="field">
+          <label for="endpoint">OAI-PMH endpoint URL</label>
+          <input id="endpoint" name="endpoint" type="url" required
+                 placeholder="https://registry.example/oai" value="{{ endpoint }}"/>
+          <p class="hint">Base URL of the registry OAI-PMH service to validate.</p>
+        </div>
+        <div class="field">
+          <label class="checkbox">
+            <input type="checkbox" name="builtin_schemas" value="true"{% if builtin_schemas %} checked{% endif %}/>
+            <span>
+              Use built-in XSD schemas (required for registration)
+            </span>
+          </label>
+        </div>
+        <button id="validator-submit" type="submit">Validate (dry run)</button>
+      </form>
+      <div id="val-progress" class="val-progress{% if watch_run_id %} val-progress--running{% endif %}"{% if not watch_run_id %} hidden{% endif %}
+           role="status" aria-live="polite" aria-busy="false">
+        <div class="val-progress-header">
+          <h2>Validating registry</h2>
+          <span id="val-progress-pct" class="val-progress-pct">0%</span>
+        </div>
+        <div class="val-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+             aria-label="Validation progress">
+          <div id="val-progress-bar" class="val-progress-bar{% if watch_run_id %} val-progress-bar--active{% endif %}"></div>
+        </div>
+        <ol id="val-progress-stepper" class="val-phase-stepper" aria-label="Validation phases"></ol>
+        <p id="val-progress-phase" class="val-progress-phase">Starting…</p>
+        <p id="val-progress-msg" class="val-progress-msg">Preparing validation…</p>
+        <details class="val-progress-log">
+          <summary>Activity log</summary>
+          <ol id="val-progress-steps" class="val-progress-steps"></ol>
+        </details>
+      </div>
+      <div id="val-result">
+        {% if result_html %}
+        <section class="result" aria-labelledby="result-heading">
+          <h2 id="result-heading">Validation result</h2>
+          {{ result_html | safe }}
+        </section>
+        {% endif %}
+      </div>
+      <div id="val-register" class="val-register" hidden>
+        <h2>Register publishing registry</h2>
+        <p id="val-register-msg" class="val-register-msg hint"></p>
+        <form id="val-register-form">
+          <div class="field">
+            <label for="reg-oai-id">IVOA identifier</label>
+            <input id="reg-oai-id" name="oai_identifier" type="text" required
+                   placeholder="ivo://example.org/my-registry"/>
+          </div>
+          <div class="field">
+            <label for="reg-title">Registry title</label>
+            <input id="reg-title" name="title" type="text" required
+                   placeholder="My Publishing Registry"/>
+          </div>
+          <button type="submit" id="val-register-submit">Register with RofR</button>
+        </form>
+        <p id="val-register-done" class="warn" role="status" hidden></p>
+      </div>
+    </section>
+
+    <footer>
+      <a href="/">Back to Registry of Registries</a>
+    </footer>
+  </div>
+{% endblock %}
+{% block scripts %}
+  <script src="{{ url_for('static', path='js/validator-watch.js') }}" defer></script>
+{% endblock %}

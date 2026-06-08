@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ri:Resource
+	xsi:type="vstd:Standard"
+	created="2019-12-06T12:37:00"
+	updated="2023-05-23T14:03:00"
+	status="active"
+	xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+	xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
+	xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0
+						http://www.ivoa.net/xml/StandardsRegExt/v1.0 http://www.ivoa.net/xml/StandardsRegExt/v1.0
+						http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/v1.0">
+
+	<title>The UCD1+ controlled vocabulary</title>
+	<shortName>ucdvoc</shortName>
+	<identifier>ivo://ivoa.net/std/ucdvoc</identifier>
+	<altIdentifier>doi:10.5479/ADS/bib/2018ivoa.spec.0527M</altIdentifier>
+	<curation>
+		<publisher>IVOA</publisher>
+
+		<creator>
+			<name>Preite Martinez, A.</name>
+		</creator>
+		<creator>
+			<name>Louys, M.</name>
+		</creator>
+		<creator>
+			<name>Cecconi, B.</name>
+		</creator>
+		<creator>
+			<name>Derriere, S.</name>
+		</creator>
+		<creator>
+			<name>Ochsenbein, F.</name>
+		</creator>
+
+		<date role="update">2018-05-27</date>
+		<version>1.3</version>
+		<contact>
+			<name>IVOA Semantics Working Group</name>
+			<email>semantics@ivoa.net</email>
+		</contact>
+	</curation>
+	<content>
+		<subject>Virtual observatory</subject>
+		<subject>Semantics</subject>
+
+		<description>
+			This document describes the list of controlled terms used to build the
+			Unified Content Descriptors, Version 1+ (UCD1+). The document describing
+			the UCD1+ can be found at the URL:
+			http://www.ivoa.net/Documents/latest/UCD.html. This document reviews the
+			structure of the UCD1+ and presents the current vocabulary. This version
+			contains new UCD words for the planetary data community as proposed in
+			the Technical Note by Cecconi et al.. The suggested list of line
+			labels under the em.line branch is not included. A general solution is
+			currently under study to deal with lists of element instances such
+			spectral lines, chemical elements, elementary particles, etc. using
+			either utypes or a vocabulary.
+		</description>
+
+		<referenceURL>http://www.ivoa.net/documents/UCD1+/</referenceURL>
+		<type>Other</type>
+		<contentLevel>Research</contentLevel>
+	</content>
+
+	<endorsedVersion status="rec">1.3</endorsedVersion>
+
+</ri:Resource>

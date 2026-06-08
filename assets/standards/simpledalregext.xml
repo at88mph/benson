@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ri:Resource xsi:type="vstd:Standard" status="active"
+  created="2013-03-25T19:21:51.07" updated="2023-05-23T14:03:00"
+  xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
+  xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+  xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0
+                      http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/v1.0
+                      http://www.ivoa.net/xml/StandardsRegExt/v1.0 http://www.ivoa.net/xml/StandardsRegExt/v1.0">
+
+  <title> Describing Simple Data Access Services </title>
+  <shortName> SimpleDALRegExt </shortName>
+  <identifier> ivo://ivoa.net/std/SimpleDALRegExt </identifier>
+
+  <curation>
+    <publisher ivo-id="ivo://ivoa.net/IVOA">
+      International Virtual Observatory Alliance
+    </publisher>
+    <creator>
+      <name> Raymond Plante </name>
+    </creator>
+    <creator>
+      <name> Jesus Delago </name>
+    </creator>
+    <creator>
+      <name> Paul Harrison </name>
+    </creator>
+    <creator>
+      <name> Doug Tody </name>
+    </creator>
+    <date> 2012-10-26 </date>
+    <version> 1.0 </version>
+    <contact>
+      <name> Registry Working Group </name>
+      <email> registry@ivoa.net </email>
+    </contact>
+  </curation>
+
+  <content>
+    <subject> software standard </subject>
+    <subject> virtual observatory </subject>
+    <subject> registry </subject>
+    <subject> data access layer </subject>
+    <subject> DAL </subject>
+    <description>
+        An application that queries or consumes descriptions of VO
+        resources must be able to recognize a resource's support for
+        standard IVOA protocols. This specification describes how to
+        describe a service that supports any of the four fundamental
+        data access protocols--Simple Cone Search (SCS), Simple Image
+        Access (SIA), Simple Spectral Access (SSA), Simple Line Access
+        (SLA)--using the VOResource XML encoding standard. A key part
+        of this specification is the set of VOResource XML extension
+        schemas that define new metadata that are specific to those
+        protocols. This document describes in particular rules for
+        describing such services within the context of IVOA Registries
+        and data discovery as well as the VO Standard Interface (VOSI)
+        and service self-description. In particular, this document
+        spells out the essential mark-up needed to identify support
+        for a standard protocol and the base URL required to access
+        the interface that supports that protocol.  
+      </description>
+    <referenceURL>
+      http://www.ivoa.net/Documents/SimpleDALRegExt/
+    </referenceURL>
+    <type> Other </type>
+    <contentLevel> Research </contentLevel>
+    <relationship>
+      <relationshipType>related-to</relationshipType>
+      <relatedResource ivo-id="ivo://www.ivoa.net/std/SIA">
+        Simple Image Access Protocol
+      </relatedResource>
+    </relationship>
+    <relationship>
+      <relationshipType>related-to</relationshipType>
+      <relatedResource ivo-id="ivo://www.ivoa.net/std/ConeSearch">
+        Simple Cone Search
+      </relatedResource>
+    </relationship>
+    <relationship>
+      <relationshipType>related-to</relationshipType>
+      <relatedResource ivo-id="ivo://www.ivoa.net/std/SSA">
+        Simple Spectral Access Protocol
+      </relatedResource>
+    </relationship>
+    <relationship>
+      <relationshipType>related-to</relationshipType>
+      <relatedResource ivo-id="ivo://www.ivoa.net/std/SLAP">
+        Simple Line Access Protocol
+      </relatedResource>
+    </relationship>
+    <relationship>
+      <relationshipType>related-to</relationshipType>
+      <relatedResource ivo-id="ivo://www.ivoa.net/std/VOResource">
+        VOResource: an XML Encoding Schema for Resource Metadata
+      </relatedResource>
+    </relationship>
+  </content>
+
+  <endorsedVersion status="pr"> 1.0 </endorsedVersion>
+
+  <schema namespace="http://www.ivoa.net/xml/ConeSearch/v1.0">
+    <location>http://www.ivoa.net/xml/ConeSearch/v1.0</location>
+    <description>
+      the VOResource extension schema for describing Simple Cone Search
+      services in the registry.
+    </description>
+    <example>http://206-12-97-214.cloud.computecanada.ca/examples/ </example>
+  </schema>
+  <schema namespace="http://www.ivoa.net/xml/SIA/v1.1">
+    <location>http://www.ivoa.net/xml/SIA/v1.1</location>
+    <description>
+      the VOResource extension schema for describing Simple Image Access
+      services in the registry.
+    </description>
+    <example>http://206-12-97-214.cloud.computecanada.ca/examples/ </example>
+  </schema>
+  <schema namespace="http://www.ivoa.net/xml/SSA/v1.1">
+    <location>http://www.ivoa.net/xml/SSA/v1.1</location>
+    <description>
+      the VOResource extension schema for describing Simple Spectral
+      Access services in the registry.
+    </description>
+    <example>http://206-12-97-214.cloud.computecanada.ca/examples/ </example>
+  </schema>
+  <schema namespace="http://www.ivoa.net/xml/SLAP/v1.0">
+    <location>http://www.ivoa.net/xml/SLAP/v1.0 </location>
+    <description>
+      the VOResource extension schema for describing Simple Line Access
+      services in the registry.
+    </description>
+    <example>http://206-12-97-214.cloud.computecanada.ca/examples/ </example>
+  </schema>
+
+</ri:Resource>

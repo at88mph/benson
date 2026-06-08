@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ri:Resource xsi:type="vstd:ServiceStandard" status="active"
+  created="2013-03-25T19:21:51.07" updated="2023-05-23T14:03:00"
+  xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
+  xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+  xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0"
+  xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0
+                      http://www.ivoa.net/xml/VODataService/v1.1 http://www.ivoa.net/xml/VODataService/v1.1
+                      http://www.ivoa.net/xml/StandardsRegExt/v1.0 http://www.ivoa.net/xml/StandardsRegExt/v1.0
+                      http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/v1.0">
+
+  <title> Simple Spectral Access Protocol </title>
+  <shortName> SSA </shortName>
+  <identifier> ivo://ivoa.net/std/SSA </identifier>
+
+  <curation>
+    <publisher ivo-id="ivo://ivoa.net/IVOA">
+      International Virtual Observatory Alliance
+    </publisher>
+    <creator>
+      <name> Doug Tody </name>
+    </creator>
+    <creator>
+      <name> Markus Dolensky </name>
+    </creator>
+    <creator>
+      <name> Jonathan McDowell </name>
+    </creator>
+    <creator>
+      <name> Francois Bonnarel </name>
+    </creator>
+    <creator>
+      <name> Tamas Budavari </name>
+    </creator>
+    <creator>
+      <name> Ivo Busko </name>
+    </creator>
+    <creator>
+      <name> Alberto Micol </name>
+    </creator>
+    <creator>
+      <name> Pedro Osuna </name>
+    </creator>
+    <creator>
+      <name> Jesus Salgado </name>
+    </creator>
+    <creator>
+      <name> Petr Skoda </name>
+    </creator>
+    <creator>
+      <name> Randy Thompson </name>
+    </creator>
+    <creator>
+      <name> Frank Valdes </name>
+    </creator>
+    <date> 2012-02-10 </date>
+    <version> 1.1 </version>
+    <contact>
+      <name> Data Access Layer Working Group </name>
+      <email> dal@ivoa.net </email>
+    </contact>
+  </curation>
+
+  <content>
+    <subject> software standard </subject>
+    <subject> virtual observatory </subject>
+    <subject> data access layer </subject>
+    <subject> DAL </subject>
+    <description>
+      The Simple Spectral Access (SSA) Protocol (SSAP) defines a
+      uniform interface to remotely discover and access one
+      dimensional spectra. SSA is a member of an integrated family
+      of data access interfaces altogether comprising the Data
+      Access Layer (DAL) of the IVOA. SSA is based on a more general
+      data model capable of describing most tabular
+      spectrophotometric data, including time series and spectral
+      energy distributions (SEDs) as well as 1-D spectra; however
+      the scope of the SSA interface as specified in this document
+      is limited to simple 1-D spectra, including simple
+      aggregations of 1-D spectra. The form of the SSA interface is
+      simple: clients first query the global resource registry to
+      find services of interest and then issue a data discovery
+      query to selected services to determine what relevant data is
+      available from each service; the candidate datasets available
+      are described uniformly in a VOTable format document which is
+      returned in response to the query. Finally, the client may
+      retrieve selected datasets for analysis. Spectrum datasets
+      returned by an SSA spectrum service may be either precomputed,
+      archival datasets, or they may be virtual data which is
+      computed on the fly to respond to a client request. Spectrum
+      datasets may conform to a standard data model defined by SSA,
+      or may be native spectra with custom project-defined
+      content. Spectra may be returned in any of a number of
+      standard data formats. Spectral data is generally stored
+      externally to the VO in a format specific to each spectral
+      data collection; currently there is no standard way to
+      represent astronomical spectra, and virtually every project
+      does it differently. Hence spectra may be actively mediated to
+      the standard SSA-defined data model at access time by the
+      service, so that client analysis programs do not have to be
+      familiar with the idiosyncratic details of each data
+      collection to be accessed. Note that
+      the metadata used to describe an SSA service in the registry
+      is defined in the SimpleDALRegExt standard
+      (ivo://www.ivoa.net/std/SimpleDALRegExt;
+      http://www.ivoa.net/Documents/SimpleDALRegExt/).
+    </description>
+    <referenceURL>
+      http://www.ivoa.net/Documents/SSA/
+    </referenceURL>
+    <type> Other </type>
+    <contentLevel> Research </contentLevel>
+    <relationship>
+      <relationshipType>related-to</relationshipType>
+      <relatedResource ivo-id="ivo://www.ivoa.net/std/VOTable">
+        VOTable Format Definition
+      </relatedResource>
+    </relationship>
+    <relationship>
+      <relationshipType>related-to</relationshipType>
+      <relatedResource ivo-id="ivo://www.ivoa.net/std/SimpleDALRegExt">
+        SimpleDALRegExt: Describing Simple Data Access Services
+      </relatedResource>
+    </relationship>
+  </content>
+
+  <endorsedVersion status="rec"> 1.1 </endorsedVersion>
+
+  <interface xsi:type="vs:ParamHTTP" role="std" version="1.0">
+    <accessURL use="base"> http://sample.org/cgi-bin/ssa </accessURL>
+    <queryType>GET</queryType>
+    <resultType>text/xml+votable</resultType>
+
+    <!-- 
+         -  These are the standard input parameters defined in the 
+         -  SSA spec
+         -->
+    <param use="required">
+      <name>REQUEST</name>
+      <description>
+        The request or operation name, where only "queryData" is
+        allowed as a value.
+      </description>
+      <dataType>string</dataType>
+    </param>
+    <param use="optional">
+      <name>VERSION</name>
+      <description>
+        The version of the SSA standard this query requests support for.
+      </description>
+      <dataType>string</dataType>
+    </param>
+    <param use="optional">
+      <name>POS</name>
+      <description>
+        Search Position in the form "ra,dec" where ra and dec are given
+        in decimal degrees. The coordinate system defaults to
+        ICRS; otherwise, the system can be specified by appending
+        ";sys", where sys is the name of the desired standard reference
+        frame as defined in the STC standard.
+      </description>
+      <unit>degrees</unit>
+      <dataType arraysize="2">real</dataType>
+    </param>
+    <param use="optional">
+      <name>SIZE</name>
+      <description>
+        The diameter of the search cone specified in decimal degrees.
+      </description>
+      <unit>degrees</unit>
+      <dataType>real</dataType>
+    </param>
+    <param use="optional">
+      <name>BAND</name>
+      <description>The desired spectral bandpass given either by a
+        name or a frequency range.</description>
+      <dataType>string</dataType>
+    </param>
+    <param use="optional">
+      <name>BAND</name>
+      <description>The desired spectral bandpass given either by a
+        name or a frequency range.</description>
+      <dataType>string</dataType>
+    </param>
+    <param use="optional">
+      <name>TIME</name>
+      <description>The desired time coverage (epoch) given as a
+        time range.</description>
+      <dataType>string</dataType>
+    </param>
+    <param use="optional">
+      <name>FORMAT</name>
+      <description>
+        A comma-delimited list of requested formats, each specified
+        as a MIME-type or one of "all", "compliant", "native",
+        "graphic", "votable", "fits", "xml", or "metadata".
+      </description>
+      <dataType>string</dataType>
+    </param>
+    <param use="optional">
+      <name>APERTURE</name>
+      <description>
+        diameter of the effective aperature to use when deriving spectra.
+      </description>
+      <dataType>real</dataType>
+    </param>
+    <param use="optional">
+      <name>SPECRP</name>
+      <description>
+        The minimum spectral resolution, specified as the spectral
+        resolving power l/dl in dimensionless units.
+      </description>
+      <dataType>real</dataType>
+    </param>
+    <param use="optional">
+      <name>SPATRES</name>
+      <description>
+        minimum spatial resolution (corresponding to the PSF of the
+        observed signal) specified in decimal degrees.
+      </description>
+      <unit>degrees</unit>
+      <dataType>real</dataType>
+    </param>
+    <param use="optional">
+      <name>TIMERES</name>
+      <description>
+        The minimum time resolution, specified in seconds.
+      </description>
+      <unit>seconds</unit>
+      <dataType>real</dataType>
+    </param>
+    <param use="optional">
+      <name>SNR</name>
+      <description>
+        The minimum signal-to-noise ratio of a candidate dataset,
+        for example specified as the ratio of the mean signal to
+        the RMS noise of the background.
+      </description>
+      <dataType>real</dataType>
+    </param>
+    <param use="optional">
+      <name>REDSHIFT</name>
+      <description>
+        The photometric (observed) redshift range to restrict
+        search to, specified as a single element open or closed range-list
+      </description>
+      <dataType>string</dataType>
+    </param>
+    <param use="optional">
+      <name>VARAMPL</name>
+      <description>
+        The acceptable range of variability amplitude, specified as
+        a single element open or closed range-list, with values in
+        the range 0.0 to 1.0.
+      </description>
+      <dataType>string</dataType>
+    </param>
+    <param use="optional">
+      <name>TARGETNAME</name>
+      <description>
+        The target name to search for, suitable for input to a
+        source name resolver.
+      </description>
+      <dataType>string</dataType>
+    </param>
+    <param use="optional">
+      <name>TARGETCLASS</name>
+      <description>
+        A comma delimited list of strings denoting the types of
+        astronomical objects to be searched for.
+      </description>
+      <dataType>string</dataType>
+    </param>
+    <param use="optional">
+      <name>FLUXCALIB</name>
+      <description>
+        The minimum level of flux calibration for acceptable data,
+        given as one of “absolute”, "relative", "normalized", or
+        “any” (the default).
+      </description>
+      <dataType>string</dataType>
+    </param>
+    <param use="optional">
+      <name>WAVECALIB</name>
+      <description>
+        the minimum level of spectral coordinate calibration for
+        acceptable data, given as one of “absolute”,
+        "relative", or "any" (the default).
+      </description>
+      <dataType>string</dataType>
+    </param>
+    <param use="optional">
+      <name>PUBDID</name>
+      <description>
+        The dataset identifier, as assigned by the publisher,
+        to restrict to.
+      </description>
+      <dataType>string</dataType>
+    </param>
+    <param use="optional">
+      <name>CREATORDID</name>
+      <description>
+        The dataset identifier, as assigned by the creator, to
+        restrict to.
+      </description>
+      <dataType>string</dataType>
+    </param>
+    <param use="optional">
+      <name>COLLECTION</name>
+      <description>
+        the name of the collection to restrict the search to
+      </description>
+      <dataType>string</dataType>
+    </param>
+    <param use="optional">
+      <name>TOP</name>
+      <description>
+        The maximum number of records to return, selecting the best
+        matched records.
+      </description>
+      <dataType>integer</dataType>
+    </param>
+    <param use="optional">
+      <name>MAXREC</name>
+      <description>
+        The maximum number of records to be returned.
+      </description>
+      <dataType>integer</dataType>
+    </param>
+    <param use="optional">
+      <name>MTIME</name>
+      <description>
+        The time range that the dataset was last modified or
+        deleted to restrict the results to.
+      </description>
+      <dataType>string</dataType>
+    </param>
+    <param use="optional">
+      <name>COMPRESS</name>
+      <description>
+        if present, return compressed versions of the datasets if available.
+      </description>
+      <dataType>boolean</dataType>
+    </param>
+    <param use="optional">
+      <name>RUNID</name>
+      <description>
+        the opaque string to identify the logical collection of
+        related queries.
+      </description>
+      <dataType>string</dataType>
+    </param>
+  </interface>
+
+</ri:Resource>

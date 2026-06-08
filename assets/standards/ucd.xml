@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ri:Resource
+	xsi:type="vstd:Standard"
+	created="2019-12-06T11:30:00"
+	updated="2023-05-23T14:03:00"
+	status="active"
+	xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+	xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
+	xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0
+						http://www.ivoa.net/xml/StandardsRegExt/v1.0 http://www.ivoa.net/xml/StandardsRegExt/v1.0
+						http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/v1.0">
+
+	<title>An IVOA Standard for Unified Content Descriptors</title>
+	<shortName>UCD</shortName>
+	<identifier>ivo://ivoa.net/std/UCD</identifier>
+	<altIdentifier>doi:10.5479/ADS/bib/2005ivoa.spec.0819D</altIdentifier>
+	<curation>
+		<publisher>IVOA</publisher>
+
+		<creator>
+			<name>Derriere, S.</name>
+		</creator>
+		<creator>
+			<name>Gray, N.</name>
+		</creator>
+		<creator>
+			<name>Mann, R.</name>
+		</creator>
+		<creator>
+			<name>Preite Martinez, A.</name>
+		</creator>
+		<creator>
+			<name>McDowell, J.</name>
+		</creator>
+		<creator>
+			<name>Mc Glynn, T.</name>
+		</creator>
+		<creator>
+			<name>Ochsenbein, F.</name>
+		</creator>
+		<creator>
+			<name>Osuna, P.</name>
+		</creator>
+		<creator>
+			<name>Rixon, G.</name>
+		</creator>
+		<creator>
+			<name>Williams, R.</name>
+		</creator>
+
+		<date role="update">2005-08-19</date>
+		<version>1.10</version>
+		<contact>
+			<name>IVOA Semantics Working Group</name>
+			<email>semantics@ivoa.net</email>
+		</contact>
+	</curation>
+	<content>
+		<subject>Virtual observatory</subject>
+		<subject>Semantics</subject>
+
+		<description>
+			This document describes the current understanding of the IVOA controlled
+			vocabulary for describing astronomical data quantities, called Unified
+			Content Descriptors (UCDs). The present document defines a new standard
+			(named UCD1+) improving the first generation of UCDs (hereafter UCD1).
+			The basic idea is to adopt a new syntax and vocabulary requiring little
+			effort for people to adapt softwares already using UCD1. This document
+			also addresses the questions of maintenance and evolution of the UCD1+.
+			Examples of use cases within the VO, and tools for using UCD1+ are also
+			described.
+		</description>
+		<referenceURL>http://www.ivoa.net/documents/latest/UCD.html</referenceURL>
+		<type>Other</type>
+		<contentLevel>Research</contentLevel>
+	</content>
+
+	<endorsedVersion status="rec">1.10</endorsedVersion>
+
+</ri:Resource>

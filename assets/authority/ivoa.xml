@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ri:Resource xsi:type="vg:Authority" status="active"
+          created="2006-07-01T09:00:00" updated="2006-07-01T09:00:00"
+          xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
+          xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+          xmlns:vg="http://www.ivoa.net/xml/VORegistry/v1.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="" 
+          xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0
+                              http://www.ivoa.net/xml/VOResource/v1.0
+                              http://www.ivoa.net/xml/VORegistry/v1.0
+                              http://www.ivoa.net/xml/VORegistry/v1.0">
+
+    <title>IVOA Naming Authority</title>
+    <shortName>IVOA</shortName>
+    <identifier>ivo://ivoa.net</identifier>
+
+    <curation>
+      <publisher ivo-id="ivo://ivoa.net/IVOA">
+         International Virtual Observatory Alliance
+      </publisher>
+      <creator>
+          <name>Raymond Plante</name>
+          <logo>http://www.ivoa.net/icons/ivoa_logo_small.jpg</logo>
+      </creator>
+      <date>2006-07-01</date>
+      <contact>
+        <name>IVOA Resource Registry Working Group</name>
+	<email>registry@ivoa.net</email>
+      </contact>
+    </curation>
+
+    <content>
+      <subject>virtual observatory</subject>
+      <description>
+         This registers the IVOA as the oowner of the ivoa.net
+         authority identifier.
+      </description>
+      <referenceURL>http://rofr.ivoa.net/rofr/</referenceURL>
+    </content>
+
+    <managingOrg>International Virtual Observatory Alliance</managingOrg>
+
+</ri:Resource>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ri:Resource xsi:type="vstd:Standard" status="active"
+  created="2013-03-25T19:21:51.07" updated="2023-05-23T14:03:00"
+  xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
+  xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+  xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0
+                      http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/v1.0
+                      http://www.ivoa.net/xml/StandardsRegExt/v1.0 http://www.ivoa.net/xml/StandardsRegExt/v1.0">
+
+  <title>
+    IVOA Spectrum Data Model
+  </title>
+  <shortName> SpectrumDM </shortName>
+  <identifier> ivo://ivoa.net/std/SpectrumDM </identifier>
+
+  <curation>
+    <publisher ivo-id="ivo://ivoa.net/IVOA">
+      International Virtual Observatory Alliance
+    </publisher>
+    <creator>
+      <name> Jonathan McDowell </name>
+    </creator>
+    <creator>
+      <name> Doug Tody </name>
+    </creator>
+    <creator>
+      <name> Tamas Budavari </name>
+    </creator>
+    <creator>
+      <name> Markus Dolensky </name>
+    </creator>
+    <creator>
+      <name> Inga Kamp </name>
+    </creator>
+    <creator>
+      <name> Kelly McCusker </name>
+    </creator>
+    <creator>
+      <name> Pavlos Protopapas </name>
+    </creator>
+    <creator>
+      <name> Arnold Rots </name>
+    </creator>
+    <creator>
+      <name> Randy Thompson </name>
+    </creator>
+    <creator>
+      <name> Frank Valdes </name>
+    </creator>
+    <creator>
+      <name> Petr Skoda </name>
+    </creator>
+    <creator>
+      <name> Bruno Rino </name>
+    </creator>
+    <creator>
+      <name> Sebastien Derriere </name>
+    </creator>
+    <creator>
+      <name> Jesus Salgado </name>
+    </creator>
+    <creator>
+      <name> Omar Laurino </name>
+    </creator>
+    <date> 2011-11-20 </date>
+    <version> 1.1 </version>
+    <contact>
+      <name> Data Models Working Group </name>
+      <email> dm@ivoa.net </email>
+    </contact>
+  </curation>
+
+  <content>
+    <subject> software standard </subject>
+    <subject> virtual observatory </subject>
+    <subject> data model </subject>
+    <description>
+        We present a data model describing the structure of
+        spectrophotometric datasets with spectral and temporal
+        coordinates and associated metadata. This data model may be
+        used to represent spectra, time series data, segments of SED
+        (Spectral Energy Distributions) and other spectral or temporal
+        associations.  
+      </description>
+    <referenceURL>
+      http://www.ivoa.net/Documents/SpectrumDM/
+    </referenceURL>
+    <type> Other </type>
+    <contentLevel> Research </contentLevel>
+    <relationship>
+      <relationshipType>related-to</relationshipType>
+      <relatedResource ivo-id="ivo://www.ivoa.net/std/SSA">
+        Simple Spectral Access Protocol
+      </relatedResource>
+    </relationship>
+  </content>
+
+  <endorsedVersion status="rec"> 1.1 </endorsedVersion>
+
+  <schema namespace="http://www.ivoa.net/xml/Spectrum/Spectrum-1.01.xsd">
+    <location>http://www.ivoa.net/xml/Spectrum/Spectrum-1.01.xsd</location>
+    <description>
+      the recommended XML schema for serializing a spectral data
+      model instance.
+    </description>
+    <example>http://206-12-97-214.cloud.computecanada.ca/examples/</example>
+  </schema>
+
+</ri:Resource>

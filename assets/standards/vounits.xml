@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ri:Resource
+  xsi:type="vstd:Standard"
+  created="2019-12-04T16:44:00"
+  updated="2023-05-23T14:03:00"
+  status="active"
+  xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+  xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
+  xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0
+                      http://www.ivoa.net/xml/StandardsRegExt/v1.0 http://www.ivoa.net/xml/StandardsRegExt/v1.0
+                      http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/v1.0">
+
+  <title>Units in the VO</title>
+  <shortName>VOUnits</shortName>
+  <identifier>ivo://ivoa.net/std/VOUnits</identifier>
+  <altIdentifier>doi:10.5479/ADS/bib/2014ivoa.spec.0523D</altIdentifier>
+  <curation>
+    <publisher>IVOA</publisher>
+
+    <creator>
+      <name>Derriere, S.</name>
+    </creator>
+    <creator>
+      <name>Gray, N.</name>
+    </creator>
+    <creator>
+      <name>Demleitner, M.</name>
+    </creator>
+    <creator>
+      <name>Louys, M.</name>
+    </creator>
+    <creator>
+      <name>Ochsenbein, F.</name>
+    </creator>
+
+    <date role="update">2014-05-23</date>
+    <version>1.0</version> <!-- the document version -->
+    <contact>
+      <name>IVOA Semantics WG</name>
+      <email>semantics@ivoa.net</email>
+    </contact>
+  </curation>
+  <content>
+    <subject>Virtual observatory</subject>
+
+    <description>
+    	This document describes a recommended syntax for writing the string
+    	representation of unit labels ("VOUnits"). In addition, it describes a
+    	set of recognised and deprecated units, which is as far as possible
+    	consistent with other relevant standards (BIPM, ISO/IEC and the IAU). The
+    	intention is that units written to conform to this specification will
+    	likely also be parsable by other well-known parsers. To this end, we
+    	include machine-readable grammars for other units syntaxes.
+    </description>
+    <referenceURL>http://ivoa.net/documents/VOUnits/</referenceURL>
+    <type>Other</type>
+    <contentLevel>Research</contentLevel>
+  </content>
+
+  <endorsedVersion status="rec">1.0</endorsedVersion>
+
+</ri:Resource>

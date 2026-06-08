@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><VOResourceValidation showStatus="fail warn rec">
+<testQuery ivo-id="ivo://uk.ac.le.star.tmpledas/ledas/ledas/vlacosmos" name="generic" recordName="res.xml" role="resource" status="active">
+    <test item="VRvalid" status="fail">Resource record must be compliant with the VOResource schemas.</test>
+    <test item="VR-UndeclaredPrefix" status="fail">46: UndeclaredPrefix: Cannot resolve 'vr:WebBrowser' as a QName: the prefix 'vr' is not declared.</test>
+    <test item="VR-cvc-elt.4.1" status="fail">46: cvc-elt.4.1: The value 'vr:WebBrowser' of attribute 'http://www.w3.org/2001/XMLSchema-instance,type' of element 'interface' is not a valid QName.</test>
+    <test item="VR-cvc-type.2" status="fail">46: cvc-type.2: The type definition cannot be abstract for element interface.</test>
+    <test item="VR-UndeclaredPrefix" status="fail">46: UndeclaredPrefix: Cannot resolve 'vr:WebBrowser' as a QName: the prefix 'vr' is not declared.</test>
+    <test item="VR-cvc-attribute.3" status="fail">46: cvc-attribute.3: The value 'vr:WebBrowser' of attribute 'xsi:type' on element 'interface' is not valid with respect to its type, 'QName'.</test>
+
+              service-for
+              LEDAS
+            </testQuery>
+</VOResourceValidation>

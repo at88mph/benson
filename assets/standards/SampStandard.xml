@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ri:Resource
+  xsi:type="vstd:Standard"
+  created="2016-09-19T22:00:00"
+  updated="2023-05-23T14:03:00"
+  status="active"
+  xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+  xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
+  xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0
+                      http://www.ivoa.net/xml/StandardsRegExt/v1.0 http://www.ivoa.net/xml/StandardsRegExt/v1.0
+                      http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/v1.0">
+  <title>Simple Application Messaging Protocol</title>
+  <identifier>ivo://ivoa.net/std/samp</identifier>
+  <curation>
+    <publisher>IVOA</publisher>
+    <creator>
+      <name>Taylor, M.</name>
+    </creator>
+    <creator>
+      <name>Boch, T.</name>
+    </creator>
+    <creator>
+      <name>Fitzpatrick, M.</name>
+    </creator>
+    <creator>
+      <name>Allan, A.</name>
+    </creator>
+    <creator>
+      <name>Fay, J.</name>
+    </creator>
+    <creator>
+      <name>Paioro, L.</name>
+    </creator>
+    <creator>
+      <name>Taylor, J.</name>
+    </creator>
+    <creator>
+      <name>Tody, D.</name>
+    </creator>
+
+    <!-- this should be the date of the last recommendation -->
+    <date role="update">2012-04-11</date>
+    <version>1.3</version> <!-- the document version -->
+    <contact>
+      <name>Applications WG</name> <!-- typcially, the name of the main WG/IG-->
+      <email>apps@ivoa.net</email> <!-- typically, the mailing list address -->
+    </contact>
+  </curation>
+  <content>
+    <subject>Virtual observatory</subject>
+    <!-- you can give further keywords, one per subject element;
+    use the IVOA thesaurus if possible:
+    http://www.ivoa.net/rdf/Vocabularies/vocabularies-20091007/IVOAT/IVOAT.html
+    -->
+
+    <description>
+      SAMP is a messaging protocol that enables astronomy software tools
+      to interoperate and communicate. IVOA members have recognised
+      that building a monolithic tool that attempts to fulfil all the
+      requirements of all users is impractical, and it is a better use of
+      our limited resources to enable individual tools to work together
+      better. One element of this is defining common file formats for the
+      exchange of data between different applications. Another important
+      component is a messaging system that enables the applications to
+      share data and take advantage of each other's functionality. SAMP
+      supports communication between applications on the desktop and in
+      web browsers, and is also intended to form a framework for more
+      general messaging requirements.
+    </description>
+    <referenceURL>http://ivoa.net/documents/SAMP/</referenceURL>
+    <type>Other</type>
+    <contentLevel>Research</contentLevel>
+  </content>
+
+  <!-- Version(s) of the standard that should be used.  In general,
+  	you'll only have exactly one endorsedVersion with status="rec",
+  	but situations are imaginable where you have multiple endorsed
+  	versions, perhaps even with non-rec status (though you should probably
+  	ask the TCG before going there). -->
+  <endorsedVersion status="rec">1.3</endorsedVersion>
+</ri:Resource>

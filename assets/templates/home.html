@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}IVOA Registry of Registries{% endblock %}
+{% block styles %}
+  <link rel="stylesheet" href="{{ url_for('static', path='css/home.css') }}"/>
+{% endblock %}
+{% block body %}
+  <div class="wrap">
+    <header class="hero">
+      <h1>Registry of Registries</h1>
+      <p class="lede">
+        RofR is the IVOA publishing registry that lists known publishing registries.
+        Harvesters that follow these publishers can discover VO resources worldwide.
+        Design and usage are described in the
+        <a href="{{ rofr_note_url }}">Registry of Registries note</a>.
+      </p>
+      <nav class="toolbar" aria-label="Primary links">
+        <div class="toolbar-row">
+          <a class="primary" href="{{ register_href }}">Register / validate a registry →</a>
+        </div>
+        <div class="toolbar-row">
+          <a href="{{ getting_in_url }}">Getting into the VO Registry</a>
+          <a href="{{ resreg_url }}">Registry Working Group</a>
+          <a href="{{ reg_if_url }}">Registry Interfaces standard</a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="content" aria-labelledby="welcome">
+      <h2 id="welcome">Welcome</h2>
+      <p>
+        This portal is aimed at registry operators and developers who interact with IVOA registries.
+        If you operate a publishing registry and want it listed, validate it against
+        <a href="{{ reg_if_url }}">Registry Interfaces</a> using the
+        <a href="{{ register_href }}">registry validator</a> before registration.
+      </p>
+
+      <details class="panel">
+        <summary>Full searchable registries</summary>
+        <p class="hint">
+          Registries that harvest from publishers on a schedule and aim to index the full VO.
+          Entries come from the configured RegTAP sync query (or a CSV cache if you provide one).
+        </p>
+        {% if searchables_warn %}
+        <p class="warn" role="status">Could not load this list ({{ searchables_warn }}). Please try again later.</p>
+        {% endif %}
+        {{ searchables_body | safe }}
+      </details>
+
+      <details class="panel">
+        <summary>Currently registered publishing registries</summary>
+        <p class="hint">
+          Publishing registries that have completed validation. Full searchable registries harvest OAI-PMH records from these endpoints.
+          This list is loaded when you open this page.
+        </p>
+        {% if publishers_warn %}
+        <p class="warn" role="status">Could not load this list ({{ publishers_warn }}). Please try again later.</p>
+        {% endif %}
+        {{ publishers_body | safe }}
+      </details>
+    </section>
+
+    <footer>
+      Publishing registries are stored in <code>PUBLISHERS_REGISTRY_FILE</code> and listed at
+      <code>{{ publishers_catalog_path }}</code> (OAI XML).
+      Searchables use <code>SEARCHABLES_REGTAP_SYNC_URL</code>, optional <code>SEARCHABLES_ADQL</code>,
+      and optional cache paths <code>SEARCHABLES_CACHE_FILE</code> / <code>SEARCHABLES_CACHE_DIR</code>
+      (with <code>SEARCHABLES_CACHE_MAX_AGE_SEC</code> to expire cached CSV).
+    </footer>
+  </div>
+{% endblock %}

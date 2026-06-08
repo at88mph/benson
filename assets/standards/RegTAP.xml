@@ -1,0 +1,93 @@
+<ri:Resource
+	xsi:type="vstd:Standard"
+	created="2016-10-21T08:34:00Z"
+	updated="2024-10-02T09:59:00Z"
+	status="active"
+	xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+	xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
+	xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0
+		http://www.ivoa.net/xml/VOResource/v1.0
+	http://www.ivoa.net/xml/StandardsRegExt/v1.0
+		http://www.ivoa.net/xml/StandardsRegExt/v1.0
+	http://www.ivoa.net/xml/VOResource/v1.0
+		http://www.ivoa.net/xml/VOResource/v1.0">
+
+  <title>IVOA Registry Relational Schema</title>
+  <identifier>ivo://ivoa.net/std/RegTAP</identifier>
+  <curation>
+    <publisher>IVOA</publisher>
+
+    <creator>
+      <name>Demleitner, M.</name>
+    </creator>
+    <creator>
+      <name>Harrison, P.</name>
+    </creator>
+    <creator>
+      <name>Molinaro, M.</name>
+    </creator>
+    <creator>
+      <name>Greene, G.</name>
+    </creator>
+    <creator>
+      <name>Dower, T.</name>
+    </creator>
+    <creator>
+      <name>Perdikeas, M.</name>
+    </creator>
+
+    <date role="update">2024-10-02</date>
+    <version>1.2</version>
+    <contact>
+      <name>IVOA Registry WG</name>
+      <email>registry@ivoa.net</email>
+    </contact>
+  </curation>
+  <content>
+    <subject>virtual-observatories</subject>
+    <subject>astronomy-databases</subject>
+
+    <description>
+Registries provide a mechanism with which VO applications can discover and
+select resources - first and foremost data and services - that are relevant for
+a particular scientific problem. This specification defines an interface for
+searching this resource metadata based on the IVOA's TAP protocol. It specifies
+a set of tables that comprise a useful subset of the information contained in
+the registry records, as well as the table's data content in terms of the XML
+VOResource data model. The general design of the system is geared towards
+allowing easy authoring of queries.
+    </description>
+    <referenceURL>http://www.ivoa.net/documents/RegTAP</referenceURL>
+    <type>Other</type>
+  	<contentLevel>Research</contentLevel>
+  </content>
+
+  <endorsedVersion status="rec">1.2</endorsedVersion>
+
+	<key>
+		<name>1.0</name>
+		<description>The data model for the tables making up the relational
+		registriy in version 1.0.  This key is used to locate TAP services
+		implementing RR in TAPRegExt dataModel elements.
+		</description>
+	</key>
+	<key>
+		<name>1.1</name>
+		<description>The data model for the tables making up the relational
+		registriy in version 1.1.  This key is used to locate TAP services
+		implementing RR in TAPRegExt dataModel or VODataService schema/@utype
+		elements.
+		</description>
+	</key>
+	<key>
+		<name>1.2</name>
+		<description>The data model for the tables making up the relational
+		registriy in version 1.2.  This key is used to locate TAP services
+		implementing the RR in TAPRegExt dataModel or VODataService schema/@utype
+		elements.
+		</description>
+	</key>
+
+</ri:Resource>

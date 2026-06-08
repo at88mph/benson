@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ri:Resource
+  xsi:type="vstd:Standard"
+  created="2016-10-21T06:52:00"
+  updated="2023-05-23T14:03:00"
+  status="active"
+  xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+  xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
+  xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0 http://www.ivoa.net/xml/VOResource/v1.0
+                      http://www.ivoa.net/xml/StandardsRegExt/v1.0 http://www.ivoa.net/xml/StandardsRegExt/v1.0
+                      http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/v1.0">
+
+  <title>IVOA Identifiers</title>
+  <identifier>ivo://ivoa.net/std/Identifiers</identifier>
+  <curation>
+    <publisher>IVOA</publisher>
+    <creator>
+      <name>Demleitner, M.</name>
+    </creator>
+    <creator>
+      <name>Plante, R.</name>
+    </creator>
+    <creator>
+      <name>Linde, T.</name>
+    </creator>
+    <creator>
+      <name>Williams, R.</name>
+    </creator>
+    <creator>
+      <name>Noddle, K.</name>
+    </creator>
+
+    <date role="update">2016-05-23</date>
+    <version>2.0</version>
+    <contact>
+      <name>IVOA Registry WG</name>
+      <email>registry@ivoa.net</email>
+    </contact>
+  </curation>
+  <content>
+    <subject>Virtual observatory</subject>
+    <subject>URI</subject>
+
+    <description>
+      An IVOA Identifier is a globally unique name for a resource within the Virtual
+      Observatory. This name can be used to retrieve a unique description of the
+      resource from an IVOA-compliant registry or to identify an entity like a
+      dataset or a protocol without dereferencing the identifier. This document
+      describes the syntax for IVOA Identifiers as well as how they are created. The
+      syntax has been defined to encourage global-uniqueness naturally and to
+      maximize the freedom of resource providers to control the character content of
+      an identifier.
+    </description>
+    <referenceURL>http://www.ivoa.net/documents/Identifiers</referenceURL>
+    <type>Other</type>
+    <contentLevel>Research</contentLevel>
+  </content>
+
+  <endorsedVersion status="rec">2.0</endorsedVersion>
+
+</ri:Resource>

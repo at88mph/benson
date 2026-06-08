@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><OAIValidation baseURL="https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/reg/oai?" showStatus="fail warn rec" testCount="54">
+  <testQuery name="Identify" options="?verb=Identify" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-1-1" status="fail">Error tag found but not expected : badVerb</test>
+  </testQuery>
+  <testQuery name="ListRecords (illegal_parameter)" options="?verb=ListRecords&amp;test=test" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-2-1" status="fail">Error tag expected but not found : badArgument</test>
+  </testQuery>
+  <testQuery name="ListMetadataFormats" options="?verb=ListMetadataFormats" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-3-1" status="fail">Error tag found but not expected : badVerb</test>
+  </testQuery>
+  <testQuery name="ListSets" options="?verb=ListSets" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-4-1" status="fail">Error tag found but not expected : badVerb</test>
+  </testQuery>
+  <testQuery name="ListIdentifiers (oai_dc)" options="?verb=ListIdentifiers&amp;metadataPrefix=oai_dc" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-6-1" status="fail">Error tag found but not expected : badVerb</test>
+  </testQuery>
+  <testQuery name="ListIdentifiers (oai_dc, from/until)" options="?verb=ListIdentifiers&amp;metadataPrefix=oai_dc&amp;from=2000-01-01&amp;until=2000-01-01" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-9-1" status="fail">Error tag found but not expected : badVerb</test>
+  </testQuery>
+  <testQuery name="ListIdentifiers (oai_dc, illegal_set, illegal_from/until)" options="?verb=ListIdentifiers&amp;metadataPrefix=oai_dc&amp;set=really_wrong_set&amp;from=some_random_date&amp;until=some_random_date" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-11-1" status="fail">Error tag expected but not found : badArgument,noSetHierarchy</test>
+  </testQuery>
+  <testQuery name="ListIdentifiers (oai_dc, from granularity != until granularity)" options="?verb=ListIdentifiers&amp;metadataPrefix=oai_dc&amp;from=2001-01-01&amp;until=2002-01-01T00:00:00Z" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-12-1" status="fail">Error tag expected but not found : badArgument</test>
+  </testQuery>
+  <testQuery name="ListIdentifiers (oai_dc, from &gt; until)" options="?verb=ListIdentifiers&amp;metadataPrefix=oai_dc&amp;from=2000-01-01&amp;until=1999-01-01" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-13-1" status="fail">Error tag expected but not found : noRecordsMatch,badArgument</test>
+  </testQuery>
+  <testQuery name="ListIdentifiers ()" options="?verb=ListIdentifiers" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-14-1" status="fail">Error tag expected but not found : badArgument</test>
+  </testQuery>
+  <testQuery name="ListIdentifiers (illegal_mdp)" options="?verb=ListIdentifiers&amp;metadataPrefix=illegal_mdp" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-16-1" status="fail">Error tag expected but not found : cannotDisseminateFormat,badArgument</test>
+  </testQuery>
+  <testQuery name="ListIdentifiers (mdp, mdp)" options="?verb=ListIdentifiers&amp;metadataPrefix=oai_dc&amp;metadataPrefix=oai_dc" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-17-1" status="fail">Error tag expected but not found : badArgument</test>
+  </testQuery>
+  <testQuery name="ListIdentifiers (illegal_resumptiontoken)" options="?verb=ListIdentifiers&amp;resumptionToken=junktoken" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-18-1" status="fail">Error tag expected but not found : badResumptionToken</test>
+  </testQuery>
+  <testQuery name="ListIdentifiers (oai_dc, from YYYY-MM-DD)" options="?verb=ListIdentifiers&amp;metadataPrefix=oai_dc&amp;from=2001-01-01" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-19-1" status="fail">Error tag found but not expected : badVerb</test>
+  </testQuery>
+  <testQuery name="ListIdentifiers (oai_dc, from YYYY-MM-DDThh:mm:ssZ)" options="?verb=ListIdentifiers&amp;metadataPrefix=oai_dc&amp;from=2001-01-01T00:00:00Z" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-20-1" status="fail">Error tag expected but not found : badArgument</test>
+  </testQuery>
+  <testQuery name="ListIdentifiers (oai_dc, from YYYY)" options="?verb=ListIdentifiers&amp;metadataPrefix=oai_dc&amp;from=2001" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-21-1" status="fail">Error tag expected but not found : badArgument</test>
+  </testQuery>
+  <testQuery name="ListMetadataFormats (illegal_id)" options="?verb=ListMetadataFormats&amp;identifier=really_wrong_id" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-23-1" status="fail">Error tag expected but not found : idDoesNotExist,badArgument</test>
+  </testQuery>
+  <testQuery name="GetRecord (oai_dc)" options="?verb=GetRecord&amp;metadataPrefix=oai_dc" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-28-1" status="fail">Error tag expected but not found : badArgument</test>
+  </testQuery>
+  <testQuery name="GetRecord (illegal_id, oai_dc)" options="?verb=GetRecord&amp;identifier=really_wrong_id&amp;metadataPrefix=oai_dc" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-29-1" status="fail">Error tag expected but not found : idDoesNotExist,badArgument</test>
+  </testQuery>
+  <testQuery name="GetRecord (invalid_id, oai_dc)" options="?verb=GetRecord&amp;identifier=invalid%5C%22id&amp;metadataPrefix=oai_dc" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-30-1" status="fail">Error tag expected but not found : badArgument,idDoesNotExist</test>
+  </testQuery>
+  <testQuery name="ListRecords (oai_dc, from/until)" options="?verb=ListRecords&amp;metadataPrefix=oai_dc&amp;from=2000-01-01&amp;until=2000-01-01" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-31-1" status="fail">Error tag found but not expected : badVerb</test>
+  </testQuery>
+  <testQuery name="ListRecords (oai_dc, illegal_set, illegal_from/until)" options="?verb=ListRecords&amp;metadataPrefix=oai_dc&amp;set=really_wrong_set&amp;from=some_random_date&amp;until=some_random_date" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-34-1" status="fail">Error tag expected but not found : badArgument,noSetHierarchy</test>
+  </testQuery>
+  <testQuery name="ListRecords" options="?verb=ListRecords" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-35-1" status="fail">Error tag expected but not found : badArgument</test>
+  </testQuery>
+  <testQuery name="ListRecords (oai_dc, from granularity != until granularity)" options="?verb=ListRecords&amp;metadataPrefix=oai_dc&amp;from=2001-01-01&amp;until=2002-01-01T00:00:00Z" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-36-1" status="fail">Error tag expected but not found : badArgument</test>
+  </testQuery>
+  <testQuery name="ListRecords (oai_dc, until before earliestDatestamp)" options="?verb=ListRecords&amp;metadataPrefix=oai_dc&amp;until=1969-01-01T00:00:00Z" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-37-1" status="fail">Error tag expected but not found : noRecordsMatch,badArgument</test>
+  </testQuery>
+  <testQuery name="ListRecords (oai_dc)" options="?verb=ListRecords&amp;metadataPrefix=oai_dc" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-38-1" status="fail">Error tag found but not expected : badVerb</test>
+  </testQuery>
+  <testQuery name="ListRecords (illegal_resumptiontoken)" options="?verb=ListRecords&amp;resumptionToken=junktoken" role="oai">
+    <test item="summary" status="fail">Operation must be compliant with OAI-PMH standard</test>
+    <test item="oai-39-1" status="fail">Error tag expected but not found : badResumptionToken</test>
+  </testQuery>
+  <testQuery name="IllegalVerb" options="?verb=IllegalVerb" role="oai">
+  </testQuery>
+</OAIValidation>
