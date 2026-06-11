@@ -38,6 +38,8 @@ class Settings:
     searchables_cache_dir: Path | None
     searchables_cache_max_age_sec: float | None
     harvest_timeout_sec: float
+    publishers_check_timeout_sec: float
+    publishers_check_concurrency: int
     parity_json_quotes: bool
     proxy_headers: bool
     forwarded_allow_ips: str
@@ -116,6 +118,12 @@ class Settings:
             searchables_cache_dir=Path(cd).resolve() if cd else None,
             searchables_cache_max_age_sec=max_age,
             harvest_timeout_sec=float(os.environ.get("HARVEST_TIMEOUT_SEC", "240")),
+            publishers_check_timeout_sec=float(
+                os.environ.get("PUBLISHERS_CHECK_TIMEOUT_SEC", "30")
+            ),
+            publishers_check_concurrency=int(
+                os.environ.get("PUBLISHERS_CHECK_CONCURRENCY", "5")
+            ),
             parity_json_quotes=os.environ.get("BENSON_PARITY_JSON", "").lower()
             in ("1", "true", "yes"),
             proxy_headers=proxy_headers,

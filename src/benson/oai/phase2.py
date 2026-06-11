@@ -48,7 +48,7 @@ def _resource_child_text(reg: etree._Element, local_name: str) -> str:  # noqa: 
     return ""
 
 
-def _extract_identify_state(parsed: etree._Element) -> dict[str, str]:  # noqa: SLF001
+def extract_identify_state(parsed: etree._Element) -> dict[str, str]:  # noqa: SLF001
     """Parse registry metadata from an Identify response."""
     registry_id = ""
     title = ""
@@ -87,7 +87,7 @@ def _extract_identify_state(parsed: etree._Element) -> dict[str, str]:  # noqa: 
 
 def identify_registration_defaults(parsed: etree._Element) -> dict[str, str]:  # noqa: SLF001
     """Return suggested registration form values from an Identify response."""
-    state = _extract_identify_state(parsed)
+    state = extract_identify_state(parsed)
     out: dict[str, str] = {}
     if state["registrationIdentifier"]:
         out["oai_identifier"] = state["registrationIdentifier"]
@@ -137,7 +137,7 @@ async def build_ivoa_harvest_validation(
             continue
 
         if role == "Identify":
-            identify_state = _extract_identify_state(parsed)
+            identify_state = extract_identify_state(parsed)
             registration_defaults = identify_registration_defaults(parsed)
 
         used_xslt = False

@@ -26,6 +26,11 @@ def _publisher_json(rec) -> dict:
         "harvest_access_url": rec.harvest_access_url,
         "registered_at": rec.registered_at,
         "validation_run_id": rec.validation_run_id,
+        "last_checked_at": rec.last_checked_at,
+        "check_status": rec.check_status,
+        "live_oai_identifier": rec.live_oai_identifier,
+        "live_title": rec.live_title,
+        "check_detail": rec.check_detail,
     }
 
 

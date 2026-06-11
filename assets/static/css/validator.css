@@ -151,7 +151,7 @@
     @media (min-width: 1400px) {
       .val-jump {
         position: fixed;
-        top: 1rem;
+        top: 10rem;
         right: max(0.75rem, calc((100vw - 920px) / 2 - 13.75rem - 0.75rem));
         left: auto;
         width: 13.75rem;

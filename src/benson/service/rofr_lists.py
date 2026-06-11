@@ -29,6 +29,11 @@ class PublisherRegistry:
     harvest_access_url: str | None
     registered_at: str | None = None
     validation_run_id: str | None = None
+    last_checked_at: str | None = None
+    check_status: str | None = None
+    live_oai_identifier: str | None = None
+    live_title: str | None = None
+    check_detail: str | None = None
 
 
 LIST_PUBLISHERS_PATH = "/list-publishers"
@@ -46,7 +51,7 @@ def _local_tag(tag: object) -> str:
     return tag
 
 
-def _harvest_access_url(metadata: Any) -> str | None:
+def harvest_access_url_from_metadata(metadata: Any) -> str | None:
     """First OAI harvest accessURL under a Registry capability."""
     for cap in metadata.iter():
         if _local_tag(cap.tag) != "capability":
@@ -76,7 +81,7 @@ def parse_publishers_oai(content: bytes) -> list[PublisherRegistry]:
         res = meta[0]
         title_el = res.xpath(_local("title"))
         title = (title_el[0].text or "").strip() if title_el else ""
-        harvest = _harvest_access_url(res)
+        harvest = harvest_access_url_from_metadata(res)
         if oai_id:
             out.append(
                 PublisherRegistry(
@@ -115,6 +120,11 @@ async def load_publishers(settings: Settings, client: httpx.AsyncClient, origin:
                 harvest_access_url=(row.get("harvest_access_url") or "").strip() or None,
                 registered_at=row.get("registered_at"),
                 validation_run_id=row.get("validation_run_id"),
+                last_checked_at=row.get("last_checked_at"),
+                check_status=row.get("check_status"),
+                live_oai_identifier=row.get("live_oai_identifier"),
+                live_title=row.get("live_title"),
+                check_detail=row.get("check_detail"),
             )
         )
     return out
@@ -133,6 +143,14 @@ async def fetch_publishers(
     r = await client.get(url, timeout=timeout_sec)
     r.raise_for_status()
     return parse_publishers_oai(r.content)
+
+
+def format_utc_display(iso: str) -> str:
+    """Format an ISO-8601 UTC timestamp for UI display with an explicit UTC suffix."""
+    s = iso.strip()
+    if s.endswith("+00:00"):
+        s = s[:-6] + "Z"
+    return f"{s} UTC"
 
 
 def render_searchables_section(entries: list[SearchableRegistry]) -> str:
@@ -166,9 +184,21 @@ def render_publishers_section(entries: list[PublisherRegistry]) -> str:
             if ou
             else ""
         )
+        check_meta = ""
+        if e.last_checked_at:
+            ts = escape(format_utc_display(e.last_checked_at))
+            status = escape(e.check_status or "unknown")
+            status_class = "warn" if e.check_status and e.check_status != "ok" else "muted"
+            check_meta = (
+                f'<p class="last-checked {status_class}">'
+                f'<span class="k">Last check</span> {status} · {ts}</p>'
+            )
+            if e.check_detail and e.check_status != "ok":
+                check_meta += f'<p class="check-detail warn">{escape(e.check_detail)}</p>'
         parts.append(
             f'<li class="registry-card"><h3 class="card-title">{t}</h3>'
-            f'<p class="id"><span class="k">IVOA Identifier</span> <code>{hid}</code></p>{harvest}</li>'
+            f'<p class="id"><span class="k">IVOA Identifier</span> <code>{hid}</code></p>'
+            f"{harvest}{check_meta}</li>"
         )
     parts.append("</ul>")
     return "".join(parts)

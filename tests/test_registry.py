@@ -234,4 +234,45 @@ async def test_register_after_validation(client: AsyncClient, monkeypatch: pytes
     )
     assert reg.status_code == 201
     rows = await ps.load()
-    assert any(r.oai_identifier == "ivo://newregistry/reg" for r in rows)
+    row = next(r for r in rows if r.oai_identifier == "ivo://newregistry/reg")
+    assert row.check_status == "ok"
+    assert row.last_checked_at == row.registered_at
+    assert row.live_oai_identifier == "ivo://newregistry/reg"
+    assert row.live_title == "New Registry"
+    assert row.check_detail is None
+
+
+@pytest.mark.asyncio
+async def test_register_uses_identify_metadata_for_initial_check_fields(
+    client: AsyncClient,
+) -> None:
+    pub = Path(os.environ["PUBLISHERS_REGISTRY_FILE"])
+    ps = PublisherStore(pub)
+    await ps.ensure_seed()
+
+    run = HarvestRun(
+        run_id="regtest-identify",
+        endpoint="https://identify.example/oai",
+        builtin_schemas=True,
+        cache=True,
+        show_status="fail warn rec",
+        fmt="html",
+        error_fmt="html",
+        identify_oai_identifier="ivo://identify/reg",
+        identify_title="Identify Registry",
+    )
+    root = R.registry_validation_root(status="completed", nfail="0", nwarn="0", nrec="0")
+    run.merged_validation = etree.ElementTree(root)
+    await store.create(run)
+
+    reg = await client.post(
+        "/validator/jobs/regtest-identify/register",
+        data={"oai_identifier": "ivo://identify/reg", "title": "Registered Title"},
+    )
+    assert reg.status_code == 201
+    rows = await ps.load()
+    row = next(r for r in rows if r.oai_identifier == "ivo://identify/reg")
+    assert row.check_status == "ok"
+    assert row.last_checked_at == row.registered_at
+    assert row.live_oai_identifier == "ivo://identify/reg"
+    assert row.live_title == "Identify Registry"

@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 import argparse
+import asyncio
+import json
 import os
+import sys
 
 
 def _dev_mode_enabled() -> bool:
@@ -16,10 +19,7 @@ def _apply_proxy_settings(*, enabled: bool, forwarded_allow_ips: str | None) -> 
         os.environ["FORWARDED_ALLOW_IPS"] = forwarded_allow_ips
 
 
-def main() -> None:
-    import uvicorn
-
-    parser = argparse.ArgumentParser(description="Run the Benson registry validator.")
+def _add_serve_arguments(parser: argparse.ArgumentParser) -> None:
     parser.add_argument(
         "--reload",
         "-r",
@@ -46,7 +46,10 @@ def main() -> None:
             "(default: FORWARDED_ALLOW_IPS env or '*'). Passed to uvicorn when --proxy-headers is on."
         ),
     )
-    args = parser.parse_args()
+
+
+def _run_serve(args: argparse.Namespace) -> None:
+    import uvicorn
 
     from benson.config import project_root
 
@@ -60,10 +63,6 @@ def main() -> None:
     root = project_root()
     reload_dirs = [str(root / "src"), str(root / "assets")] if reload else None
 
-    # Proxy handling is applied in create_app via ProxyHeadersMiddleware so
-    # template url_for() sees X-Forwarded-Proto/Host. Avoid enabling uvicorn's
-    # second wrapper (would double-apply). For raw ``uvicorn --factory``, pass
-    # ``--proxy-headers`` only if you disable BENSON_PROXY_HEADERS on the app.
     uvicorn.run(
         "benson.app:create_app",
         factory=True,
@@ -73,6 +72,99 @@ def main() -> None:
         reload_dirs=reload_dirs,
         proxy_headers=False,
     )
+
+
+def _run_check_publishers(args: argparse.Namespace) -> None:
+    from dataclasses import asdict
+
+    import httpx
+
+    from benson.config import Settings
+    from benson.registry.publishers_check import check_publishers
+    from benson.registry.publishers_store import PublisherStore
+
+    settings = Settings.from_env()
+    timeout = (
+        args.timeout
+        if args.timeout is not None
+        else settings.publishers_check_timeout_sec
+    )
+    store = PublisherStore.from_settings(settings)
+
+    async def run() -> list:
+        async with httpx.AsyncClient(http2=False) as client:
+            results = await check_publishers(
+                client,
+                store,
+                timeout=timeout,
+                concurrency=settings.publishers_check_concurrency,
+            )
+            if not args.dry_run:
+                await store.annotate_checks(results)
+            return results
+
+    results = asyncio.run(run())
+
+    if args.json:
+        print(json.dumps([asdict(r) for r in results], indent=2))
+    else:
+        counts: dict[str, int] = {}
+        for result in results:
+            counts[result.status] = counts.get(result.status, 0) + 1
+            line = f"{result.oai_identifier}\t{result.status}"
+            if result.detail:
+                line += f"\t{result.detail}"
+            print(line)
+        summary = ", ".join(f"{n} {status}" for status, n in sorted(counts.items()))
+        print(f"Checked {len(results)} publishers: {summary}")
+
+    if args.dry_run:
+        return
+    if any(result.status != "ok" for result in results):
+        sys.exit(1)
+
+
+def main() -> None:
+    if len(sys.argv) == 1 or (
+        len(sys.argv) > 1 and sys.argv[1] not in ("serve", "check-publishers")
+    ):
+        sys.argv.insert(1, "serve")
+
+    parser = argparse.ArgumentParser(description="Benson registry validator.")
+    subparsers = parser.add_subparsers(dest="command")
+
+    serve_parser = subparsers.add_parser("serve", help="Run the HTTP server (default)")
+    _add_serve_arguments(serve_parser)
+
+    check_parser = subparsers.add_parser(
+        "check-publishers",
+        help="Probe registered publishers via OAI Identify",
+    )
+    check_parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Report results without updating publishers.json",
+    )
+    check_parser.add_argument(
+        "--json",
+        action="store_true",
+        help="Print results as JSON",
+    )
+    check_parser.add_argument(
+        "--timeout",
+        type=float,
+        default=None,
+        metavar="SEC",
+        help="Per-request timeout (default: PUBLISHERS_CHECK_TIMEOUT_SEC or 30)",
+    )
+
+    args = parser.parse_args()
+    if args.command in (None, "serve"):
+        _run_serve(args)
+    elif args.command == "check-publishers":
+        _run_check_publishers(args)
+    else:
+        parser.error(f"unknown command: {args.command}")
 
 
 if __name__ == "__main__":

@@ -52,12 +52,26 @@ async def register_publisher(
             status_code=409,
         )
 
+    registered_at = datetime.now(UTC).isoformat()
+    live_oai_identifier = (run.identify_oai_identifier or "").strip() or oid
+    live_title = (run.identify_title or "").strip() or t
+    check_status = "ok"
+    check_detail = None
+    if live_oai_identifier != oid:
+        check_status = "identifier_mismatch"
+        check_detail = f"live identifier is {live_oai_identifier}"
+
     record = PublisherRegistry(
         oai_identifier=oid,
         title=t,
         harvest_access_url=run.endpoint.strip().rstrip("/") or run.endpoint.strip(),
-        registered_at=datetime.now(UTC).isoformat(),
+        registered_at=registered_at,
         validation_run_id=run.run_id,
+        last_checked_at=registered_at,
+        check_status=check_status,
+        live_oai_identifier=live_oai_identifier,
+        live_title=live_title,
+        check_detail=check_detail,
     )
     return await pub_store.upsert(record)
 

@@ -20,7 +20,7 @@ from benson.app import create_app, fastapi_app  # noqa: E402
 from benson.config import Settings  # noqa: E402
 from benson.oai.phase1 import _error_codes_acceptable  # noqa: E402
 from benson.oai.phase1_tests_data import OAI_PHASE1_CASES  # noqa: E402
-from benson.oai.phase2 import IVOA_CHECKS, _extract_identify_state, identify_registration_defaults  # noqa: E402
+from benson.oai.phase2 import IVOA_CHECKS, extract_identify_state, identify_registration_defaults  # noqa: E402
 from benson.oai.phase3 import extract_records  # noqa: E402
 from benson.oai.xmlutil import extract_error_codes  # noqa: E402
 from benson.registry.standards_store import StandardsStore  # noqa: E402
@@ -57,7 +57,7 @@ def test_extract_identify_state_parses_registry_id() -> None:
   </oai:Identify>
 </oai:OAI-PMH>"""
     root = etree.fromstring(xml, etree.XMLParser(no_network=True, resolve_entities=False))
-    state = _extract_identify_state(root)
+    state = extract_identify_state(root)
     assert state["registryID"] == "ivo://ivoa.net/rofr"
     assert state["managedAuthorityIDs"] == "/ivoa.net/"
 

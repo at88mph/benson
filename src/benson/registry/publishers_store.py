@@ -12,6 +12,14 @@ from pathlib import Path
 from benson.config import Settings
 from benson.service.rofr_lists import PublisherRegistry
 
+_CHECK_FIELD_KEYS = (
+    "last_checked_at",
+    "check_status",
+    "live_oai_identifier",
+    "live_title",
+    "check_detail",
+)
+
 _LOCKS: dict[str, asyncio.Lock] = {}
 
 
@@ -36,6 +44,11 @@ class StoredPublisher:
     harvest_access_url: str
     registered_at: str
     validation_run_id: str | None = None
+    last_checked_at: str | None = None
+    check_status: str | None = None
+    live_oai_identifier: str | None = None
+    live_title: str | None = None
+    check_detail: str | None = None
 
     def to_registry(self) -> PublisherRegistry:
         return PublisherRegistry(
@@ -44,6 +57,11 @@ class StoredPublisher:
             harvest_access_url=self.harvest_access_url,
             registered_at=self.registered_at,
             validation_run_id=self.validation_run_id,
+            last_checked_at=self.last_checked_at,
+            check_status=self.check_status,
+            live_oai_identifier=self.live_oai_identifier,
+            live_title=self.live_title,
+            check_detail=self.check_detail,
         )
 
     @classmethod
@@ -56,6 +74,11 @@ class StoredPublisher:
             harvest_access_url=rec.harvest_access_url,
             registered_at=rec.registered_at or datetime.now(UTC).isoformat(),
             validation_run_id=rec.validation_run_id,
+            last_checked_at=rec.last_checked_at,
+            check_status=rec.check_status,
+            live_oai_identifier=rec.live_oai_identifier,
+            live_title=rec.live_title,
+            check_detail=rec.check_detail,
         )
 
 
@@ -109,6 +132,11 @@ class PublisherStore:
                     harvest_access_url=url,
                     registered_at=row.get("registered_at"),
                     validation_run_id=row.get("validation_run_id"),
+                    last_checked_at=row.get("last_checked_at"),
+                    check_status=row.get("check_status"),
+                    live_oai_identifier=row.get("live_oai_identifier"),
+                    live_title=row.get("live_title"),
+                    check_detail=row.get("check_detail"),
                 )
             )
         return out
@@ -137,13 +165,38 @@ class PublisherStore:
                 if not isinstance(row, dict):
                     continue
                 if (row.get("oai_identifier") or "").strip() == stored.oai_identifier:
-                    rows[i] = asdict(stored)
+                    new_row = asdict(stored)
+                    for key in _CHECK_FIELD_KEYS:
+                        if row.get(key) is not None and new_row.get(key) is None:
+                            new_row[key] = row[key]
+                    rows[i] = new_row
                     replaced = True
                     break
             if not replaced:
                 rows.append(asdict(stored))
             self._write_document_unlocked(doc)
         return stored.to_registry()
+
+    async def annotate_checks(self, results) -> None:
+        from benson.registry.publishers_check import PublisherCheckResult  # noqa: PLC0415
+
+        by_id: dict[str, PublisherCheckResult] = {r.oai_identifier: r for r in results}
+        async with _lock_for(self._path):
+            doc = self._read_document_unlocked()
+            rows = doc.setdefault("publishers", [])
+            for row in rows:
+                if not isinstance(row, dict):
+                    continue
+                oid = (row.get("oai_identifier") or "").strip()
+                result = by_id.get(oid)
+                if result is None:
+                    continue
+                row["last_checked_at"] = result.checked_at
+                row["check_status"] = result.status
+                row["live_oai_identifier"] = result.live_oai_identifier
+                row["live_title"] = result.live_title
+                row["check_detail"] = result.detail
+            self._write_document_unlocked(doc)
 
     async def ensure_seed(self) -> None:
         async with _lock_for(self._path):
